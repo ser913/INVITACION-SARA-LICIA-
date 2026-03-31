@@ -7,42 +7,58 @@
 
 <title>15 Años Sara Lucia</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
-font-family:'Montserrat',sans-serif;
+font-family:'Playfair Display',serif;
 background:linear-gradient(135deg,#ffe4f0,#ffffff);
 text-align:center;
 color:#444;
+overflow-x:hidden;
 }
 
-/* SOBRE */
+/* SOBRE 3D */
 
-#sobre{
+#sobre-container{
 height:100vh;
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 }
 
-#sobre h1{
-font-family:'Parisienne',cursive;
-font-size:70px;
-color:#d4af37;
-}
-
-.boton{
-padding:15px 35px;
+.sobre{
+width:300px;
+height:200px;
 background:#d4af37;
-color:white;
-border:none;
-border-radius:30px;
-font-size:18px;
+position:relative;
 cursor:pointer;
+border-radius:10px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+.tapa{
+position:absolute;
+width:100%;
+height:100%;
+background:#e6c65c;
+clip-path:polygon(0 0,100% 0,50% 60%);
+transform-origin:top;
+transition:1s;
+}
+
+.sobre.abierto .tapa{
+transform:rotateX(180deg);
+}
+
+.sobre-texto{
+margin-top:25px;
+font-family:'Great Vibes',cursive;
+font-size:40px;
+color:#d4af37;
 }
 
 /* CONTENIDO */
@@ -54,36 +70,56 @@ max-width:700px;
 margin:auto;
 }
 
+.hero h1{
+font-family:'Great Vibes',cursive;
+font-size:70px;
+color:#d4af37;
+margin:0;
+}
+
+.mensaje{
+font-size:20px;
+margin-top:10px;
+}
+
 .card{
 background:white;
 padding:35px;
-margin:25px 0;
+margin:30px 0;
 border-radius:20px;
 box-shadow:0 15px 40px rgba(0,0,0,0.1);
 }
 
-h2{
-color:#d4af37;
+/* FORMULARIO */
+
+input{
+padding:12px;
+width:80%;
+border-radius:20px;
+border:1px solid #ccc;
+font-size:16px;
 }
 
-/* CONTADOR */
-
-.countdown{
-font-size:32px;
-font-weight:bold;
-color:#d4af37;
-}
-
-/* BOTONES */
-
-.button{
-display:inline-block;
-padding:14px 30px;
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:25px;
 background:#d4af37;
 color:white;
-text-decoration:none;
-border-radius:30px;
-margin-top:15px;
+font-size:16px;
+cursor:pointer;
+}
+
+/* LISTA INVITADOS */
+
+.lista{
+margin-top:20px;
+text-align:left;
+}
+
+.lista li{
+padding:5px 0;
 }
 
 </style>
@@ -92,25 +128,30 @@ margin-top:15px;
 
 <body>
 
-<div id="sobre">
+<div id="sobre-container">
 
-<h1>Sara Lucia</h1>
+<div class="sobre" onclick="abrirSobre()" id="sobre">
 
-<p>Mis 15 Años</p>
+<div class="tapa"></div>
 
-<button class="boton" onclick="abrir()">
+</div>
+
+<div class="sobre-texto">
 Abrir invitación
-</button>
+</div>
 
 </div>
 
 <div id="contenido">
 
-<div class="card">
+<div class="hero">
 
-<h2>Cuenta regresiva</h2>
+<h1>Sara Lucia</h1>
 
-<div id="contador" class="countdown"></div>
+<p class="mensaje">
+Te invitamos a celebrar los 15 años de Sara Lucia.
+Esperamos compartir contigo esta noche tan especial.
+</p>
 
 </div>
 
@@ -144,31 +185,19 @@ Oro • Rosa • Marfil • Beige
 
 <h2>Confirmar asistencia</h2>
 
-<form action="https://formsubmit.co/tuemail@gmail.com" method="POST">
+<form id="rsvp">
 
-<input type="text" name="Nombre" placeholder="Tu nombre" required><br><br>
+<input type="text" id="nombre" placeholder="Escribe tu nombre" required>
 
-<input type="number" name="Acompañantes" placeholder="Número de acompañantes"><br><br>
+<br>
 
-<button class="button" type="submit">
-
-Confirmar asistencia
-
+<button type="submit">
+Confirmar
 </button>
 
 </form>
 
-</div>
-
-<div class="card">
-
-<h2>Agregar al calendario</h2>
-
-<a class="button" href="evento.ics">
-
-Agregar evento al calendario
-
-</a>
+<ul id="listaInvitados" class="lista"></ul>
 
 </div>
 
@@ -176,33 +205,61 @@ Agregar evento al calendario
 
 <script>
 
-function abrir(){
+/* SOBRE 3D */
 
-document.getElementById("sobre").style.display="none";
+function abrirSobre(){
 
-document.getElementById("contenido").style.display="block";
+document.getElementById("sobre").classList.add("abierto")
+
+setTimeout(()=>{
+
+document.getElementById("sobre-container").style.display="none"
+
+document.getElementById("contenido").style.display="block"
+
+},900)
 
 }
 
-/* contador */
+/* RSVP */
 
-var fechaEvento = new Date("Dec 20, 2026 19:00:00").getTime();
+let invitados = JSON.parse(localStorage.getItem("invitados")) || []
 
-setInterval(function(){
+const lista = document.getElementById("listaInvitados")
 
-var ahora = new Date().getTime();
+function mostrarInvitados(){
 
-var distancia = fechaEvento - ahora;
+lista.innerHTML=""
 
-var d = Math.floor(distancia/(1000*60*60*24));
-var h = Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
-var m = Math.floor((distancia%(1000*60*60))/(1000*60));
-var s = Math.floor((distancia%(1000*60))/1000);
+invitados.forEach(nombre=>{
 
-document.getElementById("contador").innerHTML =
-d+"d "+h+"h "+m+"m "+s+"s";
+let li=document.createElement("li")
 
-},1000);
+li.textContent=nombre
+
+lista.appendChild(li)
+
+})
+
+}
+
+mostrarInvitados()
+
+document.getElementById("rsvp").addEventListener("submit",function(e){
+
+e.preventDefault()
+
+let nombre=document.getElementById("nombre").value
+
+invitados.push(nombre)
+
+localStorage.setItem("invitados",JSON.stringify(invitados))
+
+mostrarInvitados()
+
+document.getElementById("nombre").value=""
+
+})
 
 </script>
 
