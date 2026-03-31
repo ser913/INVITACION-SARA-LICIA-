@@ -20,6 +20,17 @@ text-align:center;
 overflow-x:hidden;
 }
 
+h1,h2{
+font-family:'Cinzel',serif;
+color:gold;
+}
+
+.nombre{
+font-family:'Great Vibes',cursive;
+font-size:80px;
+color:gold;
+}
+
 /* SOBRE */
 
 #sobre-container{
@@ -34,10 +45,9 @@ flex-direction:column;
 width:320px;
 height:200px;
 background:linear-gradient(45deg,#d4af37,#f2d680);
-position:relative;
 border-radius:10px;
+position:relative;
 cursor:pointer;
-box-shadow:0 20px 60px rgba(0,0,0,.7);
 }
 
 .tapa{
@@ -54,13 +64,6 @@ transition:1.2s;
 transform:rotateX(180deg);
 }
 
-.texto-abrir{
-margin-top:25px;
-font-family:'Great Vibes';
-font-size:42px;
-color:gold;
-}
-
 /* CONTENIDO */
 
 #contenido{
@@ -70,23 +73,27 @@ max-width:700px;
 margin:auto;
 }
 
-.hero h1{
-font-family:'Great Vibes';
-font-size:80px;
-color:gold;
-margin:0;
-}
-
-.hero p{
-font-size:22px;
-}
-
-.card{
+.seccion{
+margin:80px 0;
 background:rgba(255,255,255,.08);
 padding:30px;
 border-radius:20px;
-margin:25px 0;
 backdrop-filter:blur(10px);
+}
+
+/* CALENDARIO */
+
+.calendario{
+font-size:40px;
+font-weight:bold;
+color:gold;
+}
+
+/* CONTADOR */
+
+.contador{
+font-size:30px;
+margin-top:15px;
 }
 
 /* FORMULARIO */
@@ -96,16 +103,14 @@ padding:12px;
 width:80%;
 border-radius:20px;
 border:none;
-font-size:16px;
 }
 
 button{
-margin-top:15px;
+margin-top:10px;
 padding:12px 25px;
 border:none;
 border-radius:25px;
 background:gold;
-color:black;
 cursor:pointer;
 }
 
@@ -117,51 +122,14 @@ width:6px;
 height:6px;
 background:gold;
 border-radius:50%;
-box-shadow:0 0 15px gold;
+box-shadow:0 0 10px gold;
 animation:flotar linear infinite;
 }
 
 @keyframes flotar{
-
-0%{
-transform:translateY(100vh);
-opacity:0;
-}
-
-50%{
-opacity:1;
-}
-
-100%{
-transform:translateY(-10vh);
-opacity:0;
-}
-
-}
-
-/* FUEGOS */
-
-.firework{
-position:fixed;
-width:6px;
-height:6px;
-background:gold;
-border-radius:50%;
-animation:explode 2s infinite;
-}
-
-@keyframes explode{
-
-0%{
-transform:scale(0);
-opacity:1;
-}
-
-100%{
-transform:scale(25);
-opacity:0;
-}
-
+0%{transform:translateY(100vh);opacity:0}
+50%{opacity:1}
+100%{transform:translateY(-10vh);opacity:0}
 }
 
 </style>
@@ -173,50 +141,70 @@ opacity:0;
 <div id="sobre-container">
 
 <div class="sobre" id="sobre" onclick="abrirInvitacion()">
-
 <div class="tapa"></div>
-
 </div>
 
-<div class="texto-abrir">
+<p style="font-family:Great Vibes;font-size:40px;color:gold">
 Abrir invitación
-</div>
+</p>
 
 </div>
 
 <div id="contenido">
 
-<div class="hero">
+<div class="seccion">
 
-<h1>Sara Lucía</h1>
+<h2>Bienvenidos</h2>
 
 <p>
-Mis 15 años
+Cada momento es una nueva historia por contar.<br>
+Descubre lo que tenemos preparado para ti.
 </p>
 
 </div>
 
-<div class="card">
-
-<h2>Con mucha alegría</h2>
+<div class="seccion">
 
 <p>
-Te invito a celebrar conmigo este momento tan especial de mi vida.
+Con mucha ilusión te invitamos a celebrar los
+</p>
+
+<div class="nombre">15 años</div>
+
+<p>
+de nuestra hija amada
+</p>
+
+<div class="nombre">Sara Lucía</div>
+
+<p>
+Será un día mágico donde los sueños y la emoción
+se unirán para crear recuerdos inolvidables.
 </p>
 
 </div>
 
-<div class="card">
+<div class="seccion">
 
 <h2>Fecha</h2>
 
-<p>
-22 de Abril 2026
-</p>
+<div class="calendario">
+
+22 Abril 2026
 
 </div>
 
-<div class="card">
+</div>
+
+<div class="seccion">
+
+<h2>Cuenta regresiva</h2>
+
+<div class="contador" id="contador"></div>
+
+</div>
+
+<div class="seccion">
 
 <h2>Recepción</h2>
 
@@ -231,7 +219,7 @@ Carrera 5 #10-06
 
 </div>
 
-<div class="card">
+<div class="seccion">
 
 <h2>Código de vestimenta</h2>
 
@@ -247,7 +235,19 @@ Oro • Rosa • Marfil • Beige
 
 </div>
 
-<div class="card">
+<div class="seccion">
+
+<h2>Lluvia de sobres</h2>
+
+<p>
+Tu presencia es nuestro mejor regalo,
+pero si deseas tener un detalle con Sara Lucía,
+habrá lluvia de sobres.
+</p>
+
+</div>
+
+<div class="seccion">
 
 <h2>Confirmar asistencia</h2>
 
@@ -267,12 +267,24 @@ Confirmar
 
 </div>
 
+<div class="seccion">
+
+<h2>Mensaje</h2>
+
+<p>
+
+Contamos con tu asistencia.<br>
+Te esperamos para celebrar juntos
+este día tan especial.
+
+</p>
+
+</div>
+
 </div>
 
 <audio id="musica" loop>
-
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8c0c1db3b0.mp3">
-
 </audio>
 
 <script>
@@ -282,8 +294,6 @@ Confirmar
 function abrirInvitacion(){
 
 document.getElementById("sobre").classList.add("abierto")
-
-crearFuegos()
 
 document.getElementById("musica").play()
 
@@ -299,7 +309,7 @@ document.getElementById("contenido").style.display="block"
 
 /* LUCES */
 
-for(let i=0;i<80;i++){
+for(let i=0;i<70;i++){
 
 let luz=document.createElement("div")
 
@@ -313,25 +323,28 @@ document.body.appendChild(luz)
 
 }
 
-/* FUEGOS */
+/* CUENTA REGRESIVA */
 
-function crearFuegos(){
+var fechaEvento = new Date("Apr 22, 2026 19:00:00").getTime()
 
-for(let i=0;i<15;i++){
+setInterval(function(){
 
-let f=document.createElement("div")
+var ahora = new Date().getTime()
 
-f.className="firework"
+var distancia = fechaEvento - ahora
 
-f.style.left=Math.random()*100+"vw"
+var dias = Math.floor(distancia/(1000*60*60*24))
 
-f.style.top=Math.random()*60+"vh"
+var horas = Math.floor((distancia%(1000*60*60*24))/(1000*60*60))
 
-document.body.appendChild(f)
+var minutos = Math.floor((distancia%(1000*60*60))/(1000*60))
 
-}
+var segundos = Math.floor((distancia%(1000*60))/1000)
 
-}
+document.getElementById("contador").innerHTML =
+dias+"d "+horas+"h "+minutos+"m "+segundos+"s"
+
+},1000)
 
 /* RSVP */
 
