@@ -5,50 +5,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>15 Años Sara Lucía</title>
+<title>15 Años Sara Lucia</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
 font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,#ffe6f2,#fff);
-text-align:center;
+background:#fff;
 overflow-x:hidden;
+text-align:center;
 color:#444;
 }
 
-/* portada */
+/* SOBRE */
 
-.hero{
+#sobre{
 height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.9)),
-url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30");
-background-size:cover;
-background-position:center;
+background:linear-gradient(135deg,#ffdce9,#fff);
 }
 
-.hero h1{
+#sobre h1{
 font-family:'Great Vibes',cursive;
-font-size:90px;
+font-size:70px;
 color:#d4af37;
-margin:0;
 }
 
-.hero p{
-font-size:25px;
+#botonAbrir{
+padding:15px 40px;
+border:none;
+border-radius:30px;
+background:#d4af37;
+color:white;
+font-size:18px;
+cursor:pointer;
 }
 
-/* tarjetas */
+/* INVITACION */
 
-.section{
-padding:70px 20px;
+#contenido{
+display:none;
+padding:60px 20px;
 max-width:700px;
 margin:auto;
 }
@@ -65,6 +68,23 @@ h2{
 color:#d4af37;
 }
 
+.hero{
+margin-bottom:50px;
+}
+
+.hero h1{
+font-family:'Great Vibes',cursive;
+font-size:80px;
+color:#d4af37;
+margin:0;
+}
+
+.countdown{
+font-size:35px;
+font-weight:bold;
+color:#d4af37;
+}
+
 .button{
 display:inline-block;
 padding:15px 35px;
@@ -73,34 +93,19 @@ background:#d4af37;
 color:white;
 border-radius:30px;
 text-decoration:none;
-font-weight:500;
-transition:.3s;
+font-weight:600;
 }
 
-.button:hover{
-transform:scale(1.1);
-background:#c59b2f;
-}
-
-/* contador */
-
-.countdown{
-font-size:35px;
-font-weight:bold;
-color:#d4af37;
-margin-top:10px;
-}
-
-/* pétalos */
+/* PETALOS */
 
 .petalo{
 position:fixed;
 top:-10px;
-width:15px;
-height:15px;
+width:12px;
+height:12px;
 background:pink;
-opacity:.7;
 border-radius:50%;
+opacity:.8;
 animation:caer linear infinite;
 }
 
@@ -110,24 +115,52 @@ transform:translateY(110vh) rotate(360deg);
 }
 }
 
+/* BRILLOS */
+
+.sparkle{
+position:fixed;
+width:4px;
+height:4px;
+background:gold;
+border-radius:50%;
+animation:brillar 3s infinite;
+}
+
+@keyframes brillar{
+0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="hero">
+<div id="sobre">
 
-<h1>Sara Lucía</h1>
+<h1>Sara Lucia</h1>
+
 <p>Mis 15 Años</p>
+
+<button id="botonAbrir">Abrir Invitación</button>
 
 </div>
 
-<section class="section">
+<div id="contenido">
+
+<div class="hero">
+
+<h1>Sara Lucia</h1>
+
+<p>Te invito a celebrar conmigo este momento tan especial</p>
+
+</div>
 
 <div class="card">
 
-<h2>Cuenta Regresiva</h2>
+<h2>Cuenta regresiva</h2>
 
 <div id="contador" class="countdown"></div>
 
@@ -148,7 +181,7 @@ Carrera 5 #10-06
 
 <div class="card">
 
-<h2>Código de Vestimenta</h2>
+<h2>Código de vestimenta</h2>
 
 <p>Formal</p>
 
@@ -186,7 +219,7 @@ Confirmar por WhatsApp
 
 </div>
 
-</section>
+</div>
 
 <audio autoplay loop>
 
@@ -195,6 +228,15 @@ Confirmar por WhatsApp
 </audio>
 
 <script>
+
+/* abrir invitacion */
+
+document.getElementById("botonAbrir").onclick=function(){
+
+document.getElementById("sobre").style.display="none";
+document.getElementById("contenido").style.display="block";
+
+}
 
 /* contador */
 
@@ -228,6 +270,20 @@ p.style.left=Math.random()*100+"vw";
 p.style.animationDuration=5+Math.random()*5+"s";
 
 document.body.appendChild(p);
+
+}
+
+/* brillos */
+
+for(let i=0;i<40;i++){
+
+let s=document.createElement("div");
+s.className="sparkle";
+
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(s);
 
 }
 
