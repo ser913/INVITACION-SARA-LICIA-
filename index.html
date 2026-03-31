@@ -7,15 +7,14 @@
 
 <title>15 Años Sara Lucia</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
-font-family:'Poppins',sans-serif;
-background:#fff;
-overflow-x:hidden;
+font-family:'Montserrat',sans-serif;
+background:linear-gradient(135deg,#ffe4f0,#ffffff);
 text-align:center;
 color:#444;
 }
@@ -28,108 +27,63 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ffdce9,#fff);
 }
 
 #sobre h1{
-font-family:'Great Vibes',cursive;
+font-family:'Parisienne',cursive;
 font-size:70px;
 color:#d4af37;
 }
 
-#botonAbrir{
-padding:15px 40px;
-border:none;
-border-radius:30px;
+.boton{
+padding:15px 35px;
 background:#d4af37;
 color:white;
+border:none;
+border-radius:30px;
 font-size:18px;
 cursor:pointer;
 }
 
-/* INVITACION */
+/* CONTENIDO */
 
 #contenido{
 display:none;
-padding:60px 20px;
+padding:50px 20px;
 max-width:700px;
 margin:auto;
 }
 
 .card{
 background:white;
+padding:35px;
+margin:25px 0;
 border-radius:20px;
-padding:40px;
-margin:30px 0;
-box-shadow:0 20px 40px rgba(0,0,0,0.1);
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
 }
 
 h2{
 color:#d4af37;
 }
 
-.hero{
-margin-bottom:50px;
-}
-
-.hero h1{
-font-family:'Great Vibes',cursive;
-font-size:80px;
-color:#d4af37;
-margin:0;
-}
+/* CONTADOR */
 
 .countdown{
-font-size:35px;
+font-size:32px;
 font-weight:bold;
 color:#d4af37;
 }
 
+/* BOTONES */
+
 .button{
 display:inline-block;
-padding:15px 35px;
-margin-top:20px;
+padding:14px 30px;
 background:#d4af37;
 color:white;
-border-radius:30px;
 text-decoration:none;
-font-weight:600;
-}
-
-/* PETALOS */
-
-.petalo{
-position:fixed;
-top:-10px;
-width:12px;
-height:12px;
-background:pink;
-border-radius:50%;
-opacity:.8;
-animation:caer linear infinite;
-}
-
-@keyframes caer{
-to{
-transform:translateY(110vh) rotate(360deg);
-}
-}
-
-/* BRILLOS */
-
-.sparkle{
-position:fixed;
-width:4px;
-height:4px;
-background:gold;
-border-radius:50%;
-animation:brillar 3s infinite;
-}
-
-@keyframes brillar{
-0%{opacity:0}
-50%{opacity:1}
-100%{opacity:0}
+border-radius:30px;
+margin-top:15px;
 }
 
 </style>
@@ -144,19 +98,13 @@ animation:brillar 3s infinite;
 
 <p>Mis 15 Años</p>
 
-<button id="botonAbrir">Abrir Invitación</button>
+<button class="boton" onclick="abrir()">
+Abrir invitación
+</button>
 
 </div>
 
 <div id="contenido">
-
-<div class="hero">
-
-<h1>Sara Lucia</h1>
-
-<p>Te invito a celebrar conmigo este momento tan especial</p>
-
-</div>
 
 <div class="card">
 
@@ -187,22 +135,8 @@ Carrera 5 #10-06
 
 <p>
 Colores reservados:<br>
-<strong>Oro • Rosa • Marfil • Beige</strong>
+Oro • Rosa • Marfil • Beige
 </p>
-
-</div>
-
-<div class="card">
-
-<h2>Ubicación</h2>
-
-<a class="button"
-href="https://maps.google.com/?q=Edificio+Milenium+Villamaria+Caldas"
-target="_blank">
-
-Ver ubicación
-
-</a>
 
 </div>
 
@@ -210,10 +144,29 @@ Ver ubicación
 
 <h2>Confirmar asistencia</h2>
 
-<a class="button"
-href="https://wa.me/573000000000?text=Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Sara%20Lucia">
+<form action="https://formsubmit.co/tuemail@gmail.com" method="POST">
 
-Confirmar por WhatsApp
+<input type="text" name="Nombre" placeholder="Tu nombre" required><br><br>
+
+<input type="number" name="Acompañantes" placeholder="Número de acompañantes"><br><br>
+
+<button class="button" type="submit">
+
+Confirmar asistencia
+
+</button>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h2>Agregar al calendario</h2>
+
+<a class="button" href="evento.ics">
+
+Agregar evento al calendario
 
 </a>
 
@@ -221,19 +174,12 @@ Confirmar por WhatsApp
 
 </div>
 
-<audio autoplay loop>
-
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8c0c1db3b0.mp3?filename=wedding-piano-110624.mp3">
-
-</audio>
-
 <script>
 
-/* abrir invitacion */
-
-document.getElementById("botonAbrir").onclick=function(){
+function abrir(){
 
 document.getElementById("sobre").style.display="none";
+
 document.getElementById("contenido").style.display="block";
 
 }
@@ -257,35 +203,6 @@ document.getElementById("contador").innerHTML =
 d+"d "+h+"h "+m+"m "+s+"s";
 
 },1000);
-
-
-/* pétalos */
-
-for(let i=0;i<30;i++){
-
-let p=document.createElement("div");
-p.className="petalo";
-
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=5+Math.random()*5+"s";
-
-document.body.appendChild(p);
-
-}
-
-/* brillos */
-
-for(let i=0;i<40;i++){
-
-let s=document.createElement("div");
-s.className="sparkle";
-
-s.style.left=Math.random()*100+"vw";
-s.style.top=Math.random()*100+"vh";
-
-document.body.appendChild(s);
-
-}
 
 </script>
 
