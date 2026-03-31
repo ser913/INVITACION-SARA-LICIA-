@@ -1,130 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mis XV años - Sara Lucia Ramírez</title>
+
+<title>15 Años Sara Lucía</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-font-family: Arial, sans-serif;
 margin:0;
-background:#eaf4ff;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ffe6f2,#fff);
 text-align:center;
-color:#333;
+overflow-x:hidden;
+color:#444;
 }
 
-header{
-background:#1f1f1f;
-color:white;
-padding:20px;
-font-size:20px;
+/* portada */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.9)),
+url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30");
+background-size:cover;
+background-position:center;
 }
+
+.hero h1{
+font-family:'Great Vibes',cursive;
+font-size:90px;
+color:#d4af37;
+margin:0;
+}
+
+.hero p{
+font-size:25px;
+}
+
+/* tarjetas */
 
 .section{
-padding:40px 20px;
-}
-
-h1{
-font-size:36px;
-margin-bottom:10px;
-}
-
-h2{
-font-size:28px;
-margin-bottom:10px;
-}
-
-.decor{
-font-size:40px;
-color:#c9a227;
+padding:70px 20px;
+max-width:700px;
+margin:auto;
 }
 
 .card{
 background:white;
-margin:20px auto;
-padding:30px;
-border-radius:10px;
-max-width:500px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
+border-radius:20px;
+padding:40px;
+margin:30px 0;
+box-shadow:0 20px 40px rgba(0,0,0,0.1);
 }
 
-footer{
-margin-top:40px;
-padding:20px;
-background:#1f1f1f;
-color:white;
+h2{
+color:#d4af37;
 }
 
-audio{
+.button{
+display:inline-block;
+padding:15px 35px;
 margin-top:20px;
-width:80%;
+background:#d4af37;
+color:white;
+border-radius:30px;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
+}
+
+.button:hover{
+transform:scale(1.1);
+background:#c59b2f;
+}
+
+/* contador */
+
+.countdown{
+font-size:35px;
+font-weight:bold;
+color:#d4af37;
+margin-top:10px;
+}
+
+/* pétalos */
+
+.petalo{
+position:fixed;
+top:-10px;
+width:15px;
+height:15px;
+background:pink;
+opacity:.7;
+border-radius:50%;
+animation:caer linear infinite;
+}
+
+@keyframes caer{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
 }
 
 </style>
+
 </head>
 
 <body>
 
-<header>
-Mis XV años - Sara Lucia Ramírez
-</header>
+<div class="hero">
 
-<div class="section">
+<h1>Sara Lucía</h1>
+<p>Mis 15 Años</p>
 
-<div class="decor">✨</div>
+</div>
 
-<h1>Sara Lucia Ramírez</h1>
+<section class="section">
+
+<div class="card">
+
+<h2>Cuenta Regresiva</h2>
+
+<div id="contador" class="countdown"></div>
+
+</div>
+
+<div class="card">
+
+<h2>Recepción</h2>
 
 <p>
-Con mucha alegría te invito a celebrar conmigo un día muy especial.
+7:00 PM<br>
+Edificio Milenium<br>
+Villamaría<br>
+Carrera 5 #10-06
 </p>
 
 </div>
 
-<div class="section">
+<div class="card">
+
+<h2>Código de Vestimenta</h2>
+
+<p>Formal</p>
+
+<p>
+Colores reservados:<br>
+<strong>Oro • Rosa • Marfil • Beige</strong>
+</p>
+
+</div>
 
 <div class="card">
 
-<h2>Disfruta la música</h2>
+<h2>Ubicación</h2>
 
-<p>
-Reproduce la melodía mientras descubres cada detalle de esta celebración tan especial.
-</p>
+<a class="button"
+href="https://maps.google.com/?q=Edificio+Milenium+Villamaria+Caldas"
+target="_blank">
 
-<audio controls autoplay loop>
-<source src="tiempo_de_vals.mp3" type="audio/mpeg">
+Ver ubicación
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>Confirmar asistencia</h2>
+
+<a class="button"
+href="https://wa.me/573000000000?text=Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Sara%20Lucia">
+
+Confirmar por WhatsApp
+
+</a>
+
+</div>
+
+</section>
+
+<audio autoplay loop>
+
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8c0c1db3b0.mp3?filename=wedding-piano-110624.mp3">
+
 </audio>
 
-</div>
+<script>
 
-</div>
+/* contador */
 
-<div class="section">
+var fechaEvento = new Date("Dec 20, 2026 19:00:00").getTime();
 
-<div class="card">
+setInterval(function(){
 
-<h2>Próximamente</h2>
+var ahora = new Date().getTime();
 
-<p>
-Aquí podrás agregar:
-</p>
+var distancia = fechaEvento - ahora;
 
-<p>
-📅 Fecha del evento<br>
-📍 Lugar<br>
-⏰ Hora<br>
-💌 Confirmación de asistencia
-</p>
+var d = Math.floor(distancia/(1000*60*60*24));
+var h = Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
+var m = Math.floor((distancia%(1000*60*60))/(1000*60));
+var s = Math.floor((distancia%(1000*60))/1000);
 
-</div>
+document.getElementById("contador").innerHTML =
+d+"d "+h+"h "+m+"m "+s+"s";
 
-</div>
+},1000);
 
-<footer>
-Te esperamos para celebrar juntos los XV años de Sara Lucia Ramírez 💖
-</footer>
+
+/* pétalos */
+
+for(let i=0;i<30;i++){
+
+let p=document.createElement("div");
+p.className="petalo";
+
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=5+Math.random()*5+"s";
+
+document.body.appendChild(p);
+
+}
+
+</script>
 
 </body>
 </html>
