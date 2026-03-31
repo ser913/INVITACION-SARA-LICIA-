@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>15 Años Sara Lucía</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ffe6f2,#fff);
+text-align:center;
+color:#444;
+overflow-x:hidden;
+}
+
+/* pantalla inicial */
+
+.portada{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(rgba(255,255,255,0.6),rgba(255,255,255,0.9)),
+url("https://images.unsplash.com/photo-1519741497674-611481863552");
+background-size:cover;
+background-position:center;
+}
+
+.portada h1{
+font-family:'Great Vibes',cursive;
+font-size:90px;
+color:#d4af37;
+margin:0;
+}
+
+.portada p{
+font-size:25px;
+}
+
+.boton{
+margin-top:25px;
+padding:15px 35px;
+border-radius:30px;
+background:#d4af37;
+color:white;
+font-weight:600;
+text-decoration:none;
+transition:.3s;
+}
+
+.boton:hover{
+transform:scale(1.1);
+background:#c59b2f;
+}
+
+/* secciones */
+
+.section{
+padding:70px 20px;
+max-width:700px;
+margin:auto;
+}
+
+.card{
+background:white;
+border-radius:20px;
+padding:40px;
+margin:25px 0;
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
+animation:fade 1.5s ease;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(40px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+h2{
+color:#d4af37;
+}
+
+.countdown{
+font-size:35px;
+font-weight:bold;
+color:#d4af37;
+margin-top:10px;
+}
+
+footer{
+margin:40px;
+color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="portada">
+
+<h1>Sara Lucía</h1>
+
+<p>Mis 15 Años</p>
+
+<a class="boton" href="#info">
+Ver Invitación
+</a>
+
+</section>
+
+<section id="info" class="section">
+
+<div class="card">
+
+<h2>Cuenta Regresiva</h2>
+
+<div id="contador" class="countdown"></div>
+
+</div>
+
+<div class="card">
+
+<h2>Recepción</h2>
+
+<p>
+7:00 PM<br>
+Edificio Milenium<br>
+Villamaría<br>
+Carrera 5 #10-06
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Código de Vestimenta</h2>
+
+<p>Formal</p>
+
+<p>
+Colores reservados:<br>
+<strong>Oro • Rosa • Marfil • Beige</strong>
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Ubicación</h2>
+
+<a class="boton"
+href="https://maps.google.com/?q=Edificio+Milenium+Villamaria+Caldas"
+target="_blank">
+
+Ver ubicación
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>Confirmar Asistencia</h2>
+
+<a class="boton"
+href="https://wa.me/573000000000?text=Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Sara%20Lucia">
+
+Confirmar por WhatsApp
+
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+Te esperamos para compartir esta noche mágica ✨
+
+</footer>
+
+<audio autoplay loop>
+
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8c0c1db3b0.mp3?filename=wedding-piano-110624.mp3">
+
+</audio>
+
+<script>
+
+/* cuenta regresiva */
+
+var fechaEvento = new Date("Dec 20, 2026 19:00:00").getTime();
+
+var x = setInterval(function(){
+
+var ahora = new Date().getTime();
+
+var distancia = fechaEvento - ahora;
+
+var dias = Math.floor(distancia / (1000*60*60*24));
+
+var horas = Math.floor((distancia % (1000*60*60*24))/(1000*60*60));
+
+var minutos = Math.floor((distancia % (1000*60*60))/(1000*60));
+
+var segundos = Math.floor((distancia % (1000*60))/1000);
+
+document.getElementById("contador").innerHTML =
+dias+"d "+horas+"h "+minutos+"m "+segundos+"s ";
+
+},1000);
+
+</script>
+
+</body>
+</html>
